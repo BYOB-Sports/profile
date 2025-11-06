@@ -28,7 +28,7 @@
     <script>
       const qs = new URLSearchParams(location.search);
       const userId = qs.get('userId');
-      const appPath = `profile/${userId}`;
+      const appPath = `/profile/${userId}`;
       const scheme  = `byobsports://${appPath}`;
 
       const openBtn = document.getElementById('open');
