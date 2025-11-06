@@ -28,21 +28,25 @@
     <script>
       const qs = new URLSearchParams(location.search);
       const userId = qs.get('userId');
-
       const appPath = `profile/${userId}`;
       const scheme  = `byobsports://${appPath}`;
 
-      // Set the button href so a tap always works
       const openBtn = document.getElementById('open');
       openBtn.href = scheme;
 
-      // Auto-open after a short delay (won’t work on desktop)
-      setTimeout(() => { location.href = scheme; }, 300);
+      // Try opening the app
+      setTimeout(() => {
+        window.location.href = scheme;
 
-      // Optional: show the deep link for debugging
+        // If not installed, fallback to App Store after 2s
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/us/app/byob-sports/id6751515573";
+        }, 2000);
+      }, 300);
+
+      // Show deep link for debugging
       document.getElementById('dl').textContent = scheme;
       document.getElementById('debug').style.display = 'block';
-      document.getElementById('fallback').style.display = 'block';
     </script>
   </body>
 </html>
